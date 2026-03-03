@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────
+   CSS DESIGN TOKENS (Custom Properties)
+   These variables change between dark/light
+   ───────────────────────────────────────── */
+
+:root {
+  /* Primary accent */
+  --color-teal: #0CC8A8;
+  --color-teal-hover: #0aaf93;
+  --color-teal-dim: rgba(12, 200, 168, 0.15);
+
+  /* Severity colors */
+  --color-critical: #ef4444;
+  --color-high: #f97316;
+  --color-medium: #eab308;
+  --color-low: #22c55e;
+
+  /* Status colors */
+  --color-completed: #22c55e;
+  --color-scheduled: #6b7280;
+  --color-failed: #ef4444;
+
+  /* Font */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─────────────────────────────────────────
+   DARK MODE THEME (default)
+   ───────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-base: #0F0F0F;
+  --bg-surface: #161616;
+  --bg-surface-2: #1E1E1E;
+  --bg-surface-3: #252525;
+  --bg-hover: #2a2a2a;
+  --border-color: #2a2a2a;
+  --border-subtle: #222222;
+  --text-primary: #f0f0f0;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --sidebar-bg: #111111;
+  --input-bg: #1a1a1a;
+  --input-border: #333333;
+  --card-bg: #1a1a1a;
+  --table-row-hover: #1e1e1e;
+  --scrollbar-thumb: #333;
+}
+
+/* ─────────────────────────────────────────
+   LIGHT MODE THEME
+   ───────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base: #f5f5f5;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #f9f9f9;
+  --bg-surface-3: #f0f0f0;
+  --bg-hover: #f3f4f6;
+  --border-color: #e5e7eb;
+  --border-subtle: #f0f0f0;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --sidebar-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --card-bg: #ffffff;
+  --table-row-hover: #f9fafb;
+  --scrollbar-thumb: #d1d5db;
+}
+
+/* ─────────────────────────────────────────
+   BASE ELEMENT STYLES
+   ───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────
+   SCROLLBAR STYLING
+   ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-teal); }
+
+/* ─────────────────────────────────────────
+   GLOBAL UTILITY CLASSES
+   ───────────────────────────────────────── */
+
+/* Surfaces */
+.surface { background-color: var(--bg-surface); }
+.surface-2 { background-color: var(--bg-surface-2); }
+.surface-3 { background-color: var(--bg-surface-3); }
+
+/* Text */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-teal { color: var(--color-teal); }
+
+/* Borders */
+.border-theme { border-color: var(--border-color); }
+.border-subtle { border-color: var(--border-subtle); }
+
+/* ─────────────────────────────────────────
+   BUTTON STYLES
+   ───────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+  background-color: var(--color-teal);
+  color: #ffffff;
+}
+.btn-primary:hover { background-color: var(--color-teal-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(12, 200, 168, 0.3); }
+
+.btn-secondary {
+  background-color: var(--bg-surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+.btn-secondary:hover { background-color: var(--bg-hover); }
+
+.btn-danger {
+  background-color: transparent;
+  color: var(--color-critical);
+  border: 1px solid var(--color-critical);
+}
+.btn-danger:hover { background-color: rgba(239, 68, 68, 0.1); }
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+.btn-ghost:hover { background-color: var(--bg-hover); color: var(--text-primary); }
+
+/* ─────────────────────────────────────────
+   BADGE / CHIP STYLES
+   ───────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 24px;
+}
+
+.badge-critical { background-color: var(--color-critical); color: white; }
+.badge-high { background-color: var(--color-high); color: white; }
+.badge-medium { background-color: var(--color-medium); color: white; }
+.badge-low { background-color: var(--color-low); color: white; }
+
+/* Status chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.chip-completed { color: var(--color-completed); background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.2); }
+.chip-scheduled { color: #9ca3af; background: rgba(107,114,128,0.1); border-color: rgba(107,114,128,0.2); }
+.chip-failed { color: var(--color-failed); background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.2); }
+.chip-running { color: var(--color-teal); background: var(--color-teal-dim); border-color: rgba(12,200,168,0.3); }
+
+/* ─────────────────────────────────────────
+   INPUT STYLES
+   ───────────────────────────────────────── */
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input::placeholder { color: var(--text-muted); }
+.input:focus { border-color: var(--color-teal); box-shadow: 0 0 0 3px var(--color-teal-dim); }
+
+/* ─────────────────────────────────────────
+   SIDEBAR STYLES
+   ───────────────────────────────────────── */
+.sidebar {
+  width: 200px;
+  min-width: 200px;
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  margin: 1px 8px;
+}
+
+.sidebar-nav-item:hover { background-color: var(--bg-hover); color: var(--text-primary); }
+.sidebar-nav-item.active { background-color: var(--color-teal-dim); color: var(--color-teal); }
+.sidebar-nav-item.active svg { color: var(--color-teal); }
+
+/* ─────────────────────────────────────────
+   CARD / TABLE STYLES
+   ───────────────────────────────────────── */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.table-row:hover { background-color: var(--table-row-hover); }
+
+/* ─────────────────────────────────────────
+   PROGRESS BAR
+   ───────────────────────────────────────── */
+.progress-bar {
+  height: 6px;
+  background-color: var(--bg-surface-3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--color-teal);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* ─────────────────────────────────────────
+   TOAST NOTIFICATION
+   ───────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease;
+  max-width: 360px;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.toast-success { background: #064e3b; color: #6ee7b7; border: 1px solid #065f46; }
+.toast-info    { background: #1e3a5f; color: #93c5fd; border: 1px solid #1e40af; }
+.toast-error   { background: #450a0a; color: #fca5a5; border: 1px solid #7f1d1d; }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — Mobile sidebar
+   ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main-with-sidebar {
+    margin-left: 0 !important;
+  }
+}
+
+/* Main content offset for sidebar */
+.main-with-sidebar {
+  margin-left: 200px;
+  transition: margin-left 0.3s ease;
+}
+
+/* ─────────────────────────────────────────
+   ANIMATION UTILITIES
+   ───────────────────────────────────────── */
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-teal);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Console/terminal text */
+.console-text {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.8;
+}
