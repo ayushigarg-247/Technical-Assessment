@@ -38,8 +38,8 @@ export const activeScan = {
     credentials: '2 Active',
     files: 'Control.pdf',
     checklists: '40/350',
-    progress: 0,
-    currentStep: 0,
+    progress: 68,
+    currentStep: 2,
 };
 
 export const scanSteps = ['Spidering', 'Mapping', 'Testing', 'Validating', 'Reporting'];
@@ -114,8 +114,8 @@ export const findings = [
 ];
 
 export const statusBar = {
-    subAgents: 0,
+    subAgents: 3,
     parallelExecutions: 2,
     operations: 1,
-    severity: { critical: 0, high: 0, medium: 0, low: 0 },
+    severity: { critical: 1, high: 2, medium: 2, low: 1 },
 };
