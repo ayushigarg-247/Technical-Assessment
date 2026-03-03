@@ -2,6 +2,9 @@
 
 This is my submission for the Fenrir Security frontend design challenge. I had to recreate three screens from a B2B security scanning product — a signup page, a scan dashboard, and a live scan detail view. Both dark and light mode are fully supported.
 
+**Live:** [https://technical-assessment-blue.vercel.app](https://technical-assessment-blue.vercel.app)  
+**Repo:** [https://github.com/ayushigarg-247/Technical-Assessment](https://github.com/ayushigarg-247/Technical-Assessment)
+
 --------------------------------------------
 
 ## What I used
@@ -75,4 +78,4 @@ npm run build
 
 The `dist/` folder can be dropped into Vercel or Netlify directly.
 
-**Live URL:** *(to be added after deployment)*
+**Live URL:** [https://technical-assessment-blue.vercel.app](https://technical-assessment-blue.vercel.app)
